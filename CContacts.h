@@ -1,21 +1,29 @@
-#ifndef CContacts
-#define CContacts
+#ifndef CCONTACTS_H_
+#define CCONTACTS_H_
+#include <map>
+#include <string>
 
 class CContacts {
 private:
 	// map<std::string, std::string>
-	map<std::string, std::string> m_contacts;
+	std::map<std::string, std::string> m_contacts;
+	unsigned long count;
 public:
+	// ctors 'n' init
 	CContacts();
-	CContacts(std::string, std::string);
-	Init();
+	CContacts(const std::string& name, const std::string& email);
+	void init(const std::string& name = "", const std::string& email = "");
 	// methods
-	// add del modify search
-	// load / save
+	// add del modify seek load / save
 	void Add();
 	void Del();
-	void Mod();
+	void Update();
+	void Update(const std::string& name, const std::string& email);
 	void Seek();
+	bool Seek(const std::string& name);
+	void List() const;
 	void Load();
 	void Save();
 };
+
+#endif // CCONTACTS_H_
