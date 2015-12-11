@@ -2,32 +2,40 @@
 #define CCONTACT_H_
 #include <map>
 #include <string>
-class CContact {
-privite:
-	class m_CInfo {
-		private:
-			std::string m_phoneNum;
-			std::string m_email;
-		public:
-			m_CInfo(std::string phoneNum = '-', std::string email = '-') = default;
-			init();
-	};
-	// name + info
-	map<std::string, m_Cinfo info> m_contact;
+#include "CData.h"
+
+class CContacts {
+private:
+	const int NAMELIM{30};
+	// name + (CData)info
+	std::map<const std::string, const CData> m_contacts;
+public: // public Clear() for testing.
+	void Clear();
 public:
-	CAddrBook();
-	CAddrBook(std::string name, m_CInfo info);
+	// ctor(s)
+	CContacts();
+	CContacts(const string& name);
 	// init
-	void init(std::string name = "nobody", std::string phoneNum = "-", std::string::email = "-"); 	
+	void init(const string& name = "nobody");
 	// Add a contact
-	void Add(std::string name, std::string phoneNum = "-", std::string email = "-");	
+	void Add();	// interactive
+	void Add(const string& name, CData& data);
 	// Delete someone
-	void Del(std::string name);
+	void Del();
+	void Del(const string& name);
 	// Modify someone's info
-	void Modify(std::string name);
+	void Mod();
+	void Mod(const string& name);
 	// Search someone
-	void Search(std::string name);
+	void Search();
+	bool Search(const string& name);
 	// List all contacts and info
 	void List() const;
+	// Load from a file
+	void Load();
+	void LoadFrom(const char * fileName);
+	// Save as a file
+	void Save();
+	void SaveAs(const char * fileName);
 };
 #endif // CCONTACT_H_
